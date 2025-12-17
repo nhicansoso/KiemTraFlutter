@@ -13,9 +13,10 @@ class _LoginFormState extends State<LoginForm> {
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
-  // tài khoản mẫu
   final String correctUser = "admin";
-  final String correctPass = "123456";
+  final String correctPass = "12345";
+
+  bool _showPassword = false;
 
   @override
   Widget build(BuildContext context) {
@@ -44,21 +45,30 @@ class _LoginFormState extends State<LoginForm> {
                   if (value == null || value.isEmpty) {
                     return 'Vui lòng nhập tài khoản';
                   }
-
                   return null;
                 },
               ),
               const SizedBox(height: 16),
               TextFormField(
                 controller: _passwordController,
+                obscureText: !_showPassword,
                 decoration: InputDecoration(
                   prefixIcon: const Icon(Icons.lock),
                   labelText: "Mật khẩu",
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(15),
                   ),
+                  suffixIcon: IconButton(
+                    icon: Icon(
+                      _showPassword ? Icons.visibility : Icons.visibility_off,
+                    ),
+                    onPressed: () {
+                      setState(() {
+                        _showPassword = !_showPassword;
+                      });
+                    },
+                  ),
                 ),
-                obscureText: true,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Vui lòng nhập mật khẩu';
@@ -77,15 +87,13 @@ class _LoginFormState extends State<LoginForm> {
                   if (_formKey.currentState!.validate()) {
                     if (_usernameController.text == correctUser &&
                         _passwordController.text == correctPass) {
-                      // đăng nhập thành công
                       ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(
-                          content: Text("Đăng nhập thành công "),
+                          content: Text("Đăng nhập thành công"),
                           backgroundColor: Colors.green,
                         ),
                       );
                     } else {
-                      // đăng nhập thất bại
                       ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(
                           content: Text("Sai tài khoản hoặc mật khẩu"),
