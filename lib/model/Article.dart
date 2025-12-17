@@ -1,0 +1,27 @@
+class Article {
+  final String title;
+  final String description;
+  final String url;
+  final String urlToImage;
+  final String content;
+
+  Article({
+    required this.title,
+    required this.description,
+    required this.url,
+    required this.urlToImage,
+    required this.content,
+  });
+
+  factory Article.fromJson(Map<String, dynamic> json) {
+    return Article(
+      title: json['title'] ?? 'No Title',
+      description: json['description'] ?? 'No Description',
+      url: json['url'] ?? '',
+      urlToImage:
+          json['urlToImage'] ??
+          'https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg',
+      content: json['content'] ?? 'No Content',
+    );
+  }
+}
