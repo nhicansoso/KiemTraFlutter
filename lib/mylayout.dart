@@ -14,11 +14,11 @@ class MylayoutPage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               block1(),
-              const SizedBox(height: 10),
+              const SizedBox(height: 5),
               block2(),
-              const SizedBox(height: 20),
+              const SizedBox(height: 10),
               block3(),
-              const SizedBox(height: 25),
+              const SizedBox(height: 15),
               block4(),
             ],
           ),
@@ -66,11 +66,7 @@ class MylayoutPage extends StatelessWidget {
       decoration: InputDecoration(
         hintText: "Search",
         prefixIcon: const Icon(Icons.search),
-        contentPadding: const EdgeInsets.symmetric(vertical: 0, horizontal: 12),
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10),
-          borderSide: const BorderSide(color: Colors.grey),
-        ),
+        border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
       ),
     );
   }
@@ -90,11 +86,12 @@ class MylayoutPage extends StatelessWidget {
               crossAxisCount: 2,
               crossAxisSpacing: 10,
               mainAxisSpacing: 10,
+              childAspectRatio: 1,
               children: [
-                imageCard('assets/images/anh1.jpg'),
-                imageCard('assets/images/anh2.jpg'),
-                imageCard('assets/images/anh3.jpg'),
-                imageCard('assets/images/anh4.jpg'),
+                imageCard('assets/images/anh5.jpg'),
+                imageCard('assets/images/anh6.jpg'),
+                imageCard('assets/images/anh7.jpg'),
+                imageCard('assets/images/anh8.jpg'),
               ],
             ),
           ),
@@ -106,12 +103,15 @@ class MylayoutPage extends StatelessWidget {
   Widget imageCard(String path) {
     return ClipRRect(
       borderRadius: BorderRadius.circular(15),
-      child: Image.asset(path, fit: BoxFit.cover),
+      child: AspectRatio(
+        aspectRatio: 1,
+        child: Image.asset(path, fit: BoxFit.cover),
+      ),
     );
   }
 }
 
-void main(List<String> args) {
+void main() {
   runApp(
     const MaterialApp(debugShowCheckedModeBanner: false, home: MylayoutPage()),
   );
