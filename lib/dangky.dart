@@ -106,7 +106,7 @@ class _RegisterPageState extends State<RegisterPage> {
                       return "Vui lòng nhập mật khẩu";
                     }
                     if (value.length < 5) {
-                      return "Mật khẩu phải lớn hơn 6 ký tự";
+                      return "Mật khẩu phải lớn hơn 5 ký tự";
                     }
                     return null;
                   },
